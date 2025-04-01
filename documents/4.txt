@@ -1,0 +1,41 @@
+Question: Why do some transfers take longer?
+Answer: We try to send your transfer out as soon as possible, but sometimes, it might take longer. Here are some things that can affect how long your transfer takes, and what to do.
+We'll always tell you upfront when your money should arrive, and send you updates via email once the transfer is on its way. Note that any transfer with conversion can take 2 working days to process. 
+
+Payment method
+How you paid for your transfer can affect how long it takes to send, because some options are faster than others. We'll always show you how long each payment method takes when you're setting up your transfer. Conversion between currencies can always take up to 2 working days. 
+
+Paying by card
+If you paid by card, we can start your transfer straight away, because card payments are usually instant. They might sometimes be pending, so you can check your transfer status by logging into Wise. 
+
+Paying by bank
+Banks can take longer depending on your currency. For example, it might take 2 working days to process your transfer, and longer if it falls on a holiday.
+
+Paying by Swift
+If you make a Swift transfer, which is a global payment that uses multiple banks, we'll need to wait until we get your money. This could take 2–5 working days, and we can't control the speed as other banks are involved.
+
+Payment methods are also different for different currencies. Some currencies are faster than others, so read our Help Centre articles on your currency to find out how long yours can take.
+
+Learn more about Swift transfers
+
+Weekends and holidays
+Once we've received your money, we convert it to the new currency and send it out. But banking hours, weekends, and public holidays are out of our control — so this might slow down the process.
+
+If you're sending money over the weekend or before a holiday, it may only get processed the next working day. This is because we work with banks, and can only send money when they're open. You can check the status of your transfer in the app.
+
+So if your transfer is urgent, plan around weekends and public holidays.
+
+Mistake in your recipient details
+We all make mistakes, and sometimes we might input one wrong digit or misspell a name. If this happens, the recipient's bank will likely reject the payment and it will be sent back to your account details by that bank. This can take up to a few days depending on the currency, payment method, and whether it's outside of the bank's working hours.
+
+Security checks 
+From time to time, we need to run security checks on all of our customers and their payments. This is because we're a regulated financial institution, and are required to review transfers by law. We might need to verify things like your ID, address, or where you got the money from, when you make a transfer. These additional checks can add extra time to your transfer.
+
+You can't speed this up, and we'll get in touch if we need anything from you, but you can always check the status of your transfer from the web or app.
+
+Banks processing payments
+After we send your money out to your recipient's bank, the bank will then process and clear the money. But some banks are faster than others — it might take up to 2 working days for some currencies. At this point, the money's out of our system, so we can't control how they manage the payment, but the bank should be able to help.
+
+Your recipient can ask the receiving bank to clear the money faster. Just share the transfer receipt with your recipient that they can show their bank to get information. We can't share any details about the sent payment with your recipient directly. 
+
+We're trying to identify the banks that are slower, so we can give you a more accurate estimate. If you'd like to help, you can let us know when the money arrived.
