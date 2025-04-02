@@ -1,0 +1,24 @@
+FAQs extracted from: documents\2.txt
+Total FAQs: 7
+
+Q1: When will my money arrive?
+A1: When you make a transfer, we'll give you an estimate for when your money should arrive.
+
+Q2: What does it mean if Wise says my transfer is due to arrive today?
+A2: It means your money should have arrived already, but some banks need a few hours to process transfers from us.
+
+Q3: What happens if there is a typo in the recipient's name?
+A3: Small typos in names shouldn't be a problem for most countries and your money should still arrive on time. However, for some currencies like JPY, such typos can be an issue.
+
+Q4: What happens if the recipient's account number is wrong?
+A4: If the account number is wrong, your money could take longer to arrive or get returned to us. If your money gets returned, we'll notify you immediately.
+
+Q5: Do transfers process on weekends and holidays?
+A5: Not all countries have banking systems that work on weekends or holidays. Our delivery times factor in the banking hours of the country you're sending money to. In some parts of the world, banks stop processing transfers early on Fridays, which could delay the arrival of your money until the next working day.
+
+Q6: What should my recipient check if they say the money hasn't arrived yet?
+A6: Your recipient should check the sender name on their bank statement, which might show as Wise or one of our partners. They should also verify their bank details and the currency of their account, as discrepancies can cause delays or conversions.
+
+Q7: How can I get a receipt for my transfer?
+A7: Log into your Wise account, click on your transfer, click on the 3 dots on your browser to see a 'Get PDF receipt' button, or click the button directly in the app. Save it to your device and send it to your recipient.
+

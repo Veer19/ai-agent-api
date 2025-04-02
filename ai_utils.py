@@ -3,11 +3,12 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from agents import Agent, Runner
+from typing import List, Dict
+from sentence_transformers import SentenceTransformer, util
 
 # Load documents for similarity search
 def load_documents(docs_directory="documents"):
     documents = []
-    document_texts = []
     
     # Load all txt files from the documents directory
     if os.path.exists(docs_directory):
@@ -17,85 +18,99 @@ def load_documents(docs_directory="documents"):
                 with open(file_path, "r") as f:
                     content = f.read()
                     documents.append({"title": filename, "content": content})
-                    document_texts.append(content)
     
-    return documents, document_texts
+    return documents
 
-# Initialize TF-IDF vectorizer
-def initialize_vectorizer(document_texts):
-    vectorizer = TfidfVectorizer(stop_words='english')
-    if document_texts:
-        document_vectors = vectorizer.fit_transform(document_texts)
-        return vectorizer, document_vectors
-    return vectorizer, None
 
-# Function to find relevant documents
-def find_relevant_documents(query, vectorizer, document_vectors, documents, top_n=1, create_chunks=True):
-    if document_vectors is None or len(documents) == 0:
+
+
+def find_relevant_documents(
+    query: str,
+    documents: List[Dict[str, str]],
+    chunk: bool = True,
+    top_n_docs: int = 3,
+    chunk_size: int = 3,
+    similarity_threshold: float = 0.4
+) -> List[Dict[str, str]]:
+    """
+    Returns relevant document chunks (or whole documents) using semantic similarity.
+    
+    Parameters:
+    - query: User question.
+    - documents: List of documents (each with 'title' and 'content').
+    - chunk: Whether to dynamically chunk documents.
+    - top_n_docs: How many top documents to consider for chunking.
+    - chunk_size: Number of paragraphs per chunk (if chunking is enabled).
+    - similarity_threshold: Minimum cosine similarity score to include a result.
+    """
+    if not documents:
         return []
-    
-    # Transform query to vector
-    query_vector = vectorizer.transform([query])
-    
-    # Calculate similarity with whole documents first
-    similarities = cosine_similarity(query_vector, document_vectors).flatten()
-    
-    # Get indices of top similar documents
-    top_indices = similarities.argsort()[-top_n:][::-1]
-    
-    # Return relevant document chunks instead of full documents
-    relevant_docs = []
-    for idx in top_indices:
-        if similarities[idx] > 0.1:  # Only include if similarity is above threshold
-            # Get the document content
-            content = documents[idx]['content']
-            chunks = []
-            
-            # For other documents, split by paragraphs or sections
-            paragraphs = content.split("\n\n")
-           
-            for para in paragraphs:
-                if para.strip():
-                    chunks.append({
-                        "title": documents[idx]['title'], 
-                        "content": para.strip()
-                    })
-            
-            # Find the most relevant chunk within the document
-            if create_chunks and chunks:
-                # Extract text from chunks for vectorization
-                chunk_texts = [chunk["content"] for chunk in chunks]
-                # Transform chunks to vectors
-                chunk_vectors = vectorizer.transform(chunk_texts)
-                # Calculate similarity between query and each chunk
-                chunk_similarities = cosine_similarity(query_vector, chunk_vectors).flatten()
-                # Get the most relevant chunk
-                best_chunk_idx = chunk_similarities.argmax()
-                # Only add the chunk if it's sufficiently relevant
-                if chunk_similarities[best_chunk_idx] > 0.1:
-                    relevant_docs.append(chunks[best_chunk_idx])
-            else:
-                # Fallback to the whole document if chunking fails
-                relevant_docs.append(documents[idx])
-    
-    return relevant_docs
 
-def create_context(relevant_docs, past_conversations):
+    # Load model (caches after first use)
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+
+    # Extract texts and titles
+    doc_texts = [doc["content"] for doc in documents]
+    doc_titles = [doc["title"] for doc in documents]
+
+    # Step 1: Embed full documents
+    doc_vectors = model.encode(doc_texts, convert_to_tensor=True)
+
+    # Step 2: Embed the query
+    query_vector = model.encode(query, convert_to_tensor=True)
+
+    # Step 3: Find top-N relevant documents
+    doc_similarities = util.pytorch_cos_sim(query_vector, doc_vectors)[0]
+    top_doc_indices = doc_similarities.argsort(descending=True)[:top_n_docs]
+
+    relevant_results = []
+
+    for doc_idx in top_doc_indices:
+        full_text = doc_texts[doc_idx]
+        title = doc_titles[doc_idx]
+        doc_score = doc_similarities[doc_idx].item()
+
+        if not chunk:
+            if doc_score >= similarity_threshold:
+                relevant_results.append({
+                    "title": title,
+                    "content": full_text.strip(),
+                    "score": round(doc_score, 3)
+                })
+            continue
+
+        # If chunking is enabled
+        paragraphs = [p.strip() for p in full_text.split("\n\n") if p.strip()]
+        chunked_texts = [
+            "\n\n".join(paragraphs[i:i+chunk_size])
+            for i in range(0, len(paragraphs), chunk_size)
+        ]
+
+        chunk_vectors = model.encode(chunked_texts, convert_to_tensor=True)
+        chunk_similarities = util.pytorch_cos_sim(query_vector, chunk_vectors)[0]
+
+        best_idx = chunk_similarities.argmax().item()
+        best_score = chunk_similarities[best_idx].item()
+
+        if best_score >= similarity_threshold:
+            relevant_results.append({
+                "title": title,
+                "content": chunked_texts[best_idx],
+                "score": round(best_score, 3)
+            })
+
+    return sorted(relevant_results, key=lambda x: x["score"], reverse=True)
+
+
+def create_context(relevant_docs):
     print("--------------------------------")
     print("Creating context")
     print("Relevant docs:")
     print(relevant_docs)
-    print("Past conversations:")
-    print(past_conversations)
     print("--------------------------------")
     # Create context with relevant documents
     context = ""
     # Add past questions to the context if available
-    context += "Past Conversations:\n"
-    for q in past_conversations:
-        context += f"User: {q.question}\n"
-        context += f"Assistant: {q.answer}\n\n"
-    
     if relevant_docs:
         context = "\nContext:\n\n"
         for doc in relevant_docs:
@@ -125,6 +140,7 @@ def create_agents():
             Task:
             Analyze the user's current question and past conversations to generate a more precise question
             that captures their true intent. Consider context from previous interactions to clarify ambiguities.
+            If there are no past conversations, just return the question as it is.
             
             Input Format:
             Past Conversations: List of all previous conversations between the user and the assistant.
@@ -160,9 +176,11 @@ def create_agents():
 
             Conversational Style
 
-            4. Use clear, casual, and human-like phrasing.
+            1. Use clear, casual, and human-like phrasing.
 
-            5. Avoid robotic or overly formal language.
+            2. Avoid robotic or overly formal language.
+
+            3. Convert lists into scentences.
 
             Input Format:
             Past Conversations: List of all previous conversations between the user and the assistant.

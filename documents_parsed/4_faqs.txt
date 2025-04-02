@@ -1,0 +1,30 @@
+FAQs extracted from: documents\4.txt
+Total FAQs: 9
+
+Q1: Why do some transfers take longer?
+A1: Transfers can take longer due to various factors such as the payment method, currency conversion, banking hours, weekends, public holidays, mistakes in recipient details, security checks, and the processing times of recipient banks.
+
+Q2: How does the payment method affect the transfer time?
+A2: The payment method can affect transfer times because some options are faster than others. For example, card payments are usually instant, while bank and Swift transfers can take longer.
+
+Q3: What happens if I pay by card?
+A3: If you paid by card, the transfer can start immediately as card payments are usually instant. However, they might sometimes be pending, and you can check your transfer status by logging into Wise.
+
+Q4: What happens if I pay by bank?
+A4: Bank payments can take longer depending on your currency. It might take 2 working days to process your transfer, and longer if it falls on a holiday.
+
+Q5: What happens if I make a Swift transfer?
+A5: Swift transfers, which use multiple banks globally, require waiting until the money is received. This could take 2–5 working days, and the speed cannot be controlled as other banks are involved.
+
+Q6: How do weekends and holidays affect transfer times?
+A6: Banking hours, weekends, and public holidays can slow down the process. If you're sending money over the weekend or before a holiday, it may only get processed the next working day.
+
+Q7: What should I do if there is a mistake in my recipient's details?
+A7: If there is a mistake in the recipient's details, the recipient's bank will likely reject the payment and it will be sent back to your account. This can take up to a few days depending on the currency, payment method, and whether it's outside of the bank's working hours.
+
+Q8: What are security checks and how do they affect my transfer?
+A8: Security checks are necessary as Wise is a regulated financial institution required to review transfers by law. These checks might involve verifying your ID, address, or source of funds, and can add extra time to your transfer.
+
+Q9: What happens after Wise sends the money to my recipient's bank?
+A9: After the money is sent to your recipient's bank, the bank will process and clear the money. The time it takes can vary, but it might take up to 2 working days for some currencies. The recipient can ask their bank to clear the money faster by showing the transfer receipt.
+

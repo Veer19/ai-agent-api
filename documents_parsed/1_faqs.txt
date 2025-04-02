@@ -1,0 +1,30 @@
+FAQs extracted from: documents\1.txt
+Total FAQs: 9
+
+Q1: How can I check the status of my transfer?
+A1: To check the status of your transfer, log in to your Wise account and click 'Details' on the transfer you'd like to track.
+
+Q2: What percentage of transfers are delivered within 2 hours?
+A2: Today, we deliver over 80% of transfers within 2 hours of the estimated time you see on the money tracker.
+
+Q3: What should I do if my transfer is delayed?
+A3: If your transfer is delayed, check your emails for any verification requests from us, check the recipient's bank processing times, double check the recipient's details for any mistakes, and consider if it's a weekend or holiday which could affect processing times.
+
+Q4: What happens if Wise needs to verify my identity?
+A4: If verification is needed, Wise will send you an email requesting the necessary information.
+
+Q5: What does it mean when the money tracker says 'Transfer Sent'?
+A5: When the money tracker says 'Transfer Sent', it means Wise has sent out your money, but it may still take a few working days for the recipient's bank to process it.
+
+Q6: What can cause a delay in the recipient's bank processing the transfer?
+A6: Delays in processing by the recipient's bank can occur due to the time it takes for the bank to receive and process the money, which also depends on the currency being sent.
+
+Q7: What should I do if there is a mistake in the recipient's details?
+A7: If there is a mistake in the recipient's details, double check the details. Some banks may still process the transfer but it will take longer, or they might send the money back.
+
+Q8: How can I speed up the process if the money has been sent but not settled in the recipient's account?
+A8: To speed up the process, send a transfer receipt to the recipient's bank. You can get the PDF receipt by going to Home, clicking on Details on the relevant transfer, clicking Get PDF receipt, and then sending the PDF to the recipient's bank.
+
+Q9: What impact do weekends and holidays have on money transfers?
+A9: If you're sending money over the weekend or before a holiday, it may only get processed the next working day because banks are closed.
+

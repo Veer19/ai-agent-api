@@ -1,0 +1,15 @@
+FAQs extracted from: documents\5.txt
+Total FAQs: 4
+
+Q1: What is a proof of payment?
+A1: A proof of payment can be a receipt (either a scan, a photo or a PDF) or a screenshot from your online bank, clearly showing the following: 1. your details - we need to see your name and account number, and your bank's name our details, or our partner bank's details - TransferWise Ltd and our account number date - when the transfer was initiated 2. amount - the amount that you sent to us 3. currency - the currency in which your money was sent to us 4. reference - the reference you added to your transfer
+
+Q2: Do I always need to provide proof of payment when making a transfer?
+A2: We don't always need proof when you make a transfer. If we do, we'll ask you to upload it.
+
+Q3: What should I do if I can't fit all the required proof of payment information into one image?
+A3: If you aren't able to fit all of this information into one image, you can take 2 screenshots. They both need to show your bank account number to confirm the information is for the same account.
+
+Q4: What additional proof of payment is required if my bank is in Australia or New Zealand?
+A4: If your bank is in Australia or New Zealand, we need more than just a screenshot of your online banking. We'll also need a recent bank statement showing your name, date of issue, and bank details. You can also just send us the bank statement, and not the online banking screenshot, if it shows all the details listed above.
+

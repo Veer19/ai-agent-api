@@ -11,7 +11,6 @@ import tempfile
 # Import functions from ai_utils
 from ai_utils import (
     load_documents, 
-    initialize_vectorizer, 
     find_relevant_documents, 
     create_context, 
     run_agent, 
@@ -34,16 +33,15 @@ app = FastAPI(title="FAQ Agent API")
 # Add CORS middleware to allow cross-origin requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow your frontend origin
+    allow_origins=["*"],  # Allow your frontend origin
     allow_credentials=True,
     allow_methods=["*"],  # Allow all methods
     allow_headers=["*"],  # Allow all headers
 )
 
 # Load documents and initialize vectorizer
-documents, document_texts = load_documents()
-vectorizer, document_vectors = initialize_vectorizer(document_texts)
-
+# We can fetch documents or parsed_documents here by changing docs_directory parameter in load_documents function
+documents = load_documents()
 # Create agents
 question_refiner_agent, faq_agent = create_agents()
 
@@ -73,26 +71,23 @@ async def ask_audio_question(request: AudioRequest):
                 model="whisper-1",
                 file=audio_file
             )
-            
-        transcribed_text = transcription.text
         
-        # Find relevant documents
-        relevant_docs = find_relevant_documents(
-            transcribed_text, 
-            vectorizer, 
-            document_vectors, 
-            documents
-        )
-        
-        # Create context with relevant documents and past conversations
-        context = create_context(relevant_docs, request.past_conversations)
-
+        question = transcription.text
         # Refine the question based on past conversations
         refined_question = await refine_question(
             question_refiner_agent, 
-            transcribed_text, 
+            question, 
             request.past_conversations
         )
+        
+        # Find relevant documents
+        relevant_docs = find_relevant_documents(
+            refined_question, 
+            documents
+        )
+
+        # Create context with relevant documents and past conversations
+        context = create_context(relevant_docs)
         
         # Run the agent with the context and refined question
         answer = await run_agent(faq_agent, context, refined_question)
@@ -102,12 +97,10 @@ async def ask_audio_question(request: AudioRequest):
             print("Retrying with no chunking")
             relevant_docs = find_relevant_documents(
                 refined_question, 
-                vectorizer, 
-                document_vectors, 
-                documents, 
-                create_chunks=False
+                documents,
+                chunk=False
             )
-            context = create_context(relevant_docs, request.past_conversations)
+            context = create_context(relevant_docs)
             answer = await run_agent(faq_agent, context, refined_question)
 
         return {"question": refined_question, "answer": answer}

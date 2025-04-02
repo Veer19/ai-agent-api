@@ -1,0 +1,15 @@
+FAQs extracted from: documents\3.txt
+Total FAQs: 4
+
+Q1: Why does it say my transfer's complete when the money hasn't arrived yet?
+A1: We mark your transfer Complete when we've sent the money to the recipient bank. And we leave a little room in our arrival estimate for the bank to process and release it.
+
+Q2: What could be the reasons if the recipient says they haven't yet received the money?
+A2: There are two possible reasons why: 1. The receiving bank is still processing the money. 2. The money has arrived, but it looks a bit different.
+
+Q3: What can be done if the receiving bank is still processing the money?
+A3: Some banks might take up to 1 working day to release the money. Your recipient can ask their bank to speed this up. They'll need a transfer receipt that has all the details.
+
+Q4: What should the recipient check if the money has arrived but looks different?
+A4: Using the transfer receipt, your recipient should check: The sender name and reference, and the currency and amount. They should look for a transaction from Wise and not see your name. The transfer might come from one of our banking partners and can be identified by the reference number. The recipient's account might be in a different currency, and the bank will convert the money again, possibly changing the amount.
+
