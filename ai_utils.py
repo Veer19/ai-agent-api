@@ -183,11 +183,10 @@ def create_agents():
             3. Convert lists into scentences.
 
             Input Format:
-            Past Conversations: List of all previous conversations between the user and the assistant.
             Context: List of all relevant documents to help answer the question.
             Question: The question asked by the user.
 
-            Use the past conversations to form a better question, then answer the question using the past answers and the context.
+            Answer the question using the context.
 
             Output Format:
             Speak in short, friendly sentences.
